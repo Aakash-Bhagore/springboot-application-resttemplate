@@ -12,7 +12,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.List;
 
 @Controller
-@RequestMapping(path = "/get")
+@RequestMapping(path = "/get-for-entity")
 public class StudentGetForEntityController {
 
   @Autowired
