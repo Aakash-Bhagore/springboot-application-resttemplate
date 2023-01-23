@@ -25,6 +25,7 @@ public class ClassController {
     }
   }
 
+  // return new ResponseEntity<Student>(Object,HttpStatus.ok );
   @GetMapping(path = "/{id}")
   public ResponseEntity getClassById(@PathVariable("id") long id){
     try{

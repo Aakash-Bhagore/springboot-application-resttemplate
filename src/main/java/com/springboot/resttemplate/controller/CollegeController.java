@@ -10,7 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping(path = "college")
+@RequestMapping(path = "/college")
 public class CollegeController {
 
 
@@ -38,7 +38,6 @@ public class CollegeController {
   @PostMapping(path = "/save")
   public ResponseEntity saveCollege(@RequestBody College cls){
     try{
-
       return ResponseEntity.ok(this.collegeService.saveCollege(cls));
     } catch(Exception e) {
       return ResponseEntity.ok("Something went wrong with following message "+e.getMessage());

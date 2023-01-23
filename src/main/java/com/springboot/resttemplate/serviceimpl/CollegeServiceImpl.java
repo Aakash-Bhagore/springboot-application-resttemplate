@@ -18,13 +18,18 @@ public class CollegeServiceImpl implements CollegeService {
 
   @Override
   public College saveCollege(College college) {
+    if (college.getCollegeName().isBlank()){
+      throw new RuntimeException("Data not found: "+college);
+    }
     college.setCollegeOpenDate(LocalDate.now());
     return this.collegeRepository.save(college);
   }
 
   @Override
   public College getCollege(long id) {
-    return this.collegeRepository.findById(id).get();
+    College college = this.collegeRepository.findById(id).get();
+    if(college!=null) throw new RuntimeException("Data not found for Id: "+id);
+    return college;
   }
 
   @Override
@@ -46,5 +51,17 @@ public class CollegeServiceImpl implements CollegeService {
       this.collegeRepository.deleteById(id);
       return "Class deleted successfully ";
     }
+  }
+
+
+  private List<College> saveCollegeTestingPurpose(College college) {
+
+    if (college.getCollegeName().isBlank()) {
+       College savedCollege = this.collegeRepository.save(college);
+        if (savedCollege.getCollegeName().isBlank()){
+          throw new RuntimeException("RequestBody is empty "+college);
+      }
+    }
+    return (List<College>)this.collegeRepository.findAll();
   }
 }
